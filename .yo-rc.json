@@ -1,0 +1,6 @@
+{
+  "generator-arquivesentities": {
+    "entityName": "teste",
+    "tableEntityName": "testedb"
+  }
+}
