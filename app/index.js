@@ -17,30 +17,22 @@ module.exports = class extends Generator {
     initializing() {}
 
     prompting() {
-        this.log(yosay('Bem-vindo ao gerador de solution .NET genérica com DDD!'))
+        this.log(yosay('Bem-vindo ao gerador de arquivos genéricos de entidades!'))
 
         var generator = this;
         return this.prompt([{
             type: "input",
-            name: "solutionName",
-            message: "Nome completo da solution - define o namespace",
-            default: this.config.get("solutionName") || "Sample.Project"
+            name: "entityName",
+            message: "Nome da Entidade",
+            default: this.config.get("entityName")
         }, {
-            when: function(answers) {
-                var nameParts = answers.solutionName.split(".");
-                var multiNameParts = nameParts.length > 1;
-                generator.tempAnswers = multiNameParts ?
-                    _.last(nameParts) :
-                    answers.solutionName;
-                return multiNameParts;
-            },
             type: "input",
-            name: "solutionShortName",
-            message: "Nome simplificado da solution",
+            name: "tableEntityName",
+            message: "Nome da tabela de dados da Entidade",
             default: this.tempAnswers
         }]).then((answers) => {
-            this.config.set("solutionName", answers.solutionName);
-            this.config.set("solutionShortName", answers.solutionShortName || this.tempAnswers);
+            this.config.set("entityName", answers.entityName);
+            this.config.set("tableEntityName", answers.tableEntityName);
             this.config.save();
         });
     }
@@ -55,30 +47,31 @@ module.exports = class extends Generator {
                 this.templatePath(),
                 this.templatePath("../temp"), {
                     process: function(content) {
-                        var namespaceRegEx = new RegExp(/InsertSolutionNamespaceHere/, 'g')
-                        var nameRegEx = new RegExp(/InsertSolutionNameHere/, 'g')
+                        var entityName = new RegExp(/InsertEntityNameHere/, 'g')
+                        var tableEntityName = new RegExp(/InsertTableEntityNameHere/, 'g')
                         return content.toString()
-                            .replace(namespaceRegEx, '<%= solutionName %>')
-                            .replace(nameRegEx, '<%= solutionShortName %>');
+                            .replace(entityName, '<%= entityName %>')
+                            .replace(tableEntityName, '<%= tableEntityName %>');
                     }
                 }
             );
 
-            var solutionName = this.config.get("solutionName");
-            var solutionShortName = this.config.get("solutionShortName");
-            this.registerTransformStream(rename(function(path) {
-                path.basename = path.basename.replace(/(InsertSolutionNamespaceHere)/g, solutionName);
-                path.dirname = path.dirname.replace(/(InsertSolutionNamespaceHere)/g, solutionName);
+            var entityName = this.config.get("entityName");
+            var tableEntityName = this.config.get("tableEntityName");
 
-                path.basename = path.basename.replace(/(InsertSolutionNameHere)/g, solutionShortName);
-                path.dirname = path.dirname.replace(/(InsertSolutionNameHere)/g, solutionShortName);
+            this.registerTransformStream(rename(function(path) {
+                path.basename = path.basename.replace(/(InsertEntityNameHere)/g, entityName);
+                path.dirname = path.dirname.replace(/(InsertEntityNameHere)/g, entityName);
+
+                path.basename = path.basename.replace(/(InsertTableEntityNameHere)/g, tableEntityName);
+                path.dirname = path.dirname.replace(/(InsertTableEntityNameHere)/g, tableEntityName);
             }));
 
             this.fs.copyTpl(
                 this.templatePath("../temp"),
                 this.destinationPath(), {
-                    solutionName: this.config.get("solutionName"),
-                    solutionShortName: this.config.get("solutionShortName"),
+                    entityName: this.config.get("entityName"),
+                    tableEntityName: this.config.get("tableEntityName"),
                 }
             );
 

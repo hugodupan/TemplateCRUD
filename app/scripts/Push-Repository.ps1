@@ -3,7 +3,7 @@ Param(
   [string]$branch
 )
 
-$pushUrl =  "https://$token@github.com/thomazpadilha/Generator.DotNetSolution.git";
+$pushUrl =  "https://github.com/hugodupan/TemplateCRUD.git";
 $branchRef = "head:$branch"
 
 if($branch.Contains("dev") -Or $branch.Contains("master")){

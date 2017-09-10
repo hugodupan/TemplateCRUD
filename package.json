@@ -1,21 +1,19 @@
 {
-    "name": "generator-dotnetsolution",
+    "name": "generator-arquivesentities",
     "version": "1.0.8",
-    "description": "Implementação de arquitetura de solução .NET básica.",
+    "description": "Implementação de arquivos necessários para manipular uma entidade.",
     "main": "index.js",
     "scripts": {
         "test": "mocha",
         "build-test": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=__buildpath__/test/testResults.xml"
     },
-    "author": "Thomaz Moura",
+    "author": "Hugo Borges",
     "repository": {
         "type": "git",
-        "url": "https://github.com/thomazpadilha/Generator.DotNetSolution"
+        "url": "https://github.com/hugodupan/TemplateCRUD.git"
     },
     "keywords": [
         "yeoman-generator",
-        ".NET",
-        ".NET Framework",
         "PT-BR"
     ],
     "license": "MIT",
