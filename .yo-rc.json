@@ -1,6 +1,6 @@
 {
   "generator-arquivesentities": {
-    "entityName": "teste",
-    "tableEntityName": "testedb"
+    "entityName": "Usuario",
+    "tableEntityName": "tbl_usuario"
   }
 }
