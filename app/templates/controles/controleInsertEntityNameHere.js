@@ -17,7 +17,7 @@ module.exports = app => {
                     });
             },
             cadastrar: (req, res) => {
-                req.body.CodigoUsuarioCriador = req.user.Codigo;
+                req.body.CodigoUsuarioCriador = req.user.CodigoUsuarioCriador;
                 modeloInsertEntityNameHere.create(req.body)
                     .then(resultado => {
                         res.json(resultado.Codigo);

@@ -36,7 +36,7 @@ module.exports = (sequelize, DataType) => {
             field: "dta_data_exclusao"
         }
     }, {
-        tableName: "testedb",
+        tableName: "tb_teste",
         timestamps: true,
         createdAt: 'DataCadastrado',
         updatedAt: 'DataEditado',
