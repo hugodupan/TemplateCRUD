@@ -10,6 +10,16 @@ var _ = require('lodash');
 var chalk = require('chalk');
 
 module.exports = class extends Generator {
+
+    // installingGupRename() {
+    //     this.npmInstall(['gulp-rename'], { 'save-dev': true });
+    // }
+
+    // installingGupReplace() {
+    //     this.npmInstall(['gulp-replace'], { 'save-dev': true });
+    // }
+
+
     constructor(args, opts) {
         super(args, opts);
     }
@@ -69,7 +79,7 @@ module.exports = class extends Generator {
 
             this.fs.copyTpl(
                 this.templatePath("../temp"),
-                this.destinationPath(), {
+                this.destinationPath("app"), {
                     entityName: this.config.get("entityName"),
                     tableEntityName: this.config.get("tableEntityName"),
                 }
