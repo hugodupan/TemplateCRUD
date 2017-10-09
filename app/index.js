@@ -79,7 +79,7 @@ module.exports = class extends Generator {
 
             this.fs.copyTpl(
                 this.templatePath("../temp"),
-                this.destinationPath("app"), {
+                this.destinationPath("api"), {
                     entityName: this.config.get("entityName"),
                     tableEntityName: this.config.get("tableEntityName"),
                 }
