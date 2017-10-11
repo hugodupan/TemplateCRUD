@@ -2,7 +2,7 @@ module.exports = app => {
     
         const modeloInsertEntityNameHere = app.api.sistema.banco.modelos.InsertEntityNameHere;
     
-        const ControleInsertEntityNameHere = {
+        const ServicoInsertEntityNameHere = {
             listar: (req, res) => {
                 modeloInsertEntityNameHere.findAll({
                         include: [{
@@ -64,5 +64,5 @@ module.exports = app => {
             }
     
         };
-        return ControleInsertEntityNameHere;
+        return ServicoInsertEntityNameHere;
     };

@@ -1,6 +1,6 @@
 {
   "name": "generator-dpnentity",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Implementação de arquivos necessários para manipular uma entidade.",
   "files": [
     "app"
